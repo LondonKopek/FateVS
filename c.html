@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name= "viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+	<title> ChessBoard </title>
+	<link rel="stylesheet" type="text/css" href="c.css"/>
+	<script src="c.js"></script>
+	<script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+const BRuler = new Object();
+maxhp =BRuler.maxhp = 25;
+hp =BRuler.hp = 25;
+atk =BRuler.atk = 18;
+def =BRuler.def = 12;
+spd=BRuler.spd = 15;
+hasmoved=BRuler.hasmoved = false;
+yp = BRuler.yp = 'A';
+xp = BRuler.xp = 5;
+canTarget=BRuler.canTarget = false;
+exists=BRuler.exists = true;
+BRuler.getShape = function() {
+	return this.shape;
+};
+var BRulerhealth = String( BRuler.hp ) + "/" + String( BRuler.maxhp );
+
+const RRuler = new Object();
+maxhp=RRuler.maxhp = 25;
+hp=RRuler.hp = 25;
+atk=RRuler.atk = 18;
+def=RRuler.def = 12;
+spd=RRuler.spd = 15;
+yp = RRuler.yp = 'H';
+xp = RRuler.xp = 4;
+canTarget=RRuler.canTarget = false;
+hasmoved=RRuler.hasmoved = false;
+exists=RRuler.exists = true;
+RRuler.getShape = function() {
+	return this.shape;
+};
+var RRulerhealth = String( RRuler.hp ) + "/" + String( RRuler.maxhp );
+
+
+const BSaber = new Object();
+maxhp=BSaber.maxhp = 20;
+hp=BSaber.hp = 20;
+atk=BSaber.atk = 18;
+def=BSaber.def = 14;
+spd=BSaber.spd = 10;
+yp = BSaber.yp = 'A';
+xp = BSaber.xp = 4;
+hasmoved=BSaber.hasmoved = false;
+canTarget=BSaber.canTarget = false;
+exists=BSaber.exists = true;
+BSaber.getShape = function() {
+	return this.shape;
+};
+var BSaberhealth = String( BSaber.hp ) + "/" + String( BSaber.maxhp );
+
+const RSaber = new Object();
+maxhp=RSaber.maxhp = 20;
+hp=RSaber.hp = 20;
+atk=RSaber.atk = 18;
+def=RSaber.def = 14;
+spd=RSaber.spd = 10;
+yp = RSaber.yp = 'H';
+xp = RSaber.xp = 5;
+hasmoved=RSaber.hasmoved = false;
+canTarget=RSaber.canTarget = false;
+exists=RSaber.exists = true;
+RSaber.getShape = function() {
+	return this.shape;
+};
+var RSaberhealth = String( RSaber.hp ) + "/" + String( RSaber.maxhp );
+
+
+const BLancer = new Object();
+maxhp=BLancer.maxhp = 18;
+hp=BLancer.hp = 18;
+atk=BLancer.atk = 17;
+def=BLancer.def = 16;
+spd=BLancer.spd = 13;
+yp = BLancer.yp = 'A';
+xp = BLancer.xp = 2;
+hasmoved=BLancer.hasmoved = false;
+canTarget=BLancer.canTarget = false;
+exists=BLancer.exists = true;
+BLancer.getShape = function() {
+	return this.shape;
+};
+var BLancerhealth = String( BLancer.hp ) + "/" + String( BLancer.maxhp );
+
+const RLancer = new Object();
+maxhp=RLancer.maxhp = 18;
+hp=RLancer.hp = 18;
+atk=RLancer.atk = 17;
+def=RLancer.def = 16;
+spd=RLancer.spd = 13;
+yp = RLancer.yp = 'H';
+xp = RLancer.xp = 7;
+hasmoved=RLancer.hasmoved = false;
+canTarget=RLancer.canTarget = false;
+exists=RLancer.exists = true;
+RLancer.getShape = function() {
+	return this.shape;
+};
+var RLancerhealth = String( RLancer.hp ) + "/" + String( RLancer.maxhp );
+
+const BArcher = new Object();
+maxhp=BArcher.maxhp = 16;
+hp=BArcher.hp = 16;
+atk=BArcher.atk = 19;
+def=BArcher.def = 8;
+spd=BArcher.spd = 16;
+yp = BArcher.yp = 'A';
+xp = BArcher.xp = 6;
+hasmoved=BArcher.hasmoved = false;
+canTarget=BArcher.canTarget = false;
+exists=BArcher.exists = true;
+BArcher.getShape = function() {
+	return this.shape;
+};
+var BArcherhealth = String( BArcher.hp ) + "/" + String( BArcher.maxhp );
+
+const RArcher = new Object();
+maxhp=RArcher.maxhp = 16;
+hp=RArcher.hp = 16;
+atk=RArcher.atk = 19;
+def=RArcher.def = 8;
+spd=RArcher.spd = 16;
+yp = RArcher.yp = 'H';
+xp = RArcher.xp = 3;
+hasmoved=RArcher.hasmoved = false;
+canTarget=RArcher.canTarget = false;
+exists=RArcher.exists = true;
+RArcher.getShape = function() {
+	return this.shape;
+};
+var RArcherhealth = String( RArcher.hp ) + "/" + String( RArcher.maxhp );
+
+
+const BBerserker = new Object();
+maxhp=BBerserker.maxhp = 18;
+hp=BBerserker.hp = 18;
+atk=BBerserker.atk = 21;
+def=BBerserker.def = 10;
+spd=BBerserker.spd = 5;
+yp = BBerserker.yp = 'A';
+xp = BBerserker.xp = 8;
+hasmoved=BBerserker.hasmoved = false;
+canTarget=BBerserker.canTarget = false;
+exists=BBerserker.exists = true;
+BBerserker.getShape = function() {
+	return this.shape;
+};
+var BBerserkerhealth = String( BBerserker.hp ) + "/" + String( BBerserker.maxhp );
+
+const RBerserker = new Object();
+maxhp=RBerserker.maxhp = 18;
+hp=RBerserker.hp = 18;
+atk=RBerserker.atk = 21;
+def=RBerserker.def = 10;
+spd=RBerserker.spd = 5;
+yp = RBerserker.yp = 'H';
+xp = RBerserker.xp = 1;
+hasmoved=RBerserker.hasmoved = false;
+canTarget=RBerserker.canTarget = false;
+exists=RBerserker.exists = true;
+RBerserker.getShape = function() {
+	return this.shape;
+};
+var RBerserkerhealth = String( RBerserker.hp ) + "/" + String( RBerserker.maxhp );
+
+
+const BAssassin = new Object();
+maxhp=BAssassin.maxhp = 18;
+hp=BAssassin.hp = 18;
+atk=BAssassin.atk = 16;
+def=BAssassin.def = 12;
+spd=BAssassin.spd = 25;
+yp = BAssassin.yp = 'A';
+xp = BAssassin.xp = 1;
+hasmoved=BAssassin.hasmoved = false;
+canTarget=BAssassin.canTarget = false;
+exists=BAssassin.exists = true;
+BAssassin.getShape = function() {
+	return this.shape;
+};
+var BAssassinhealth = String( BAssassin.hp ) + "/" + String( BAssassin.maxhp );
+
+
+
+const RAssassin = new Object();
+maxhp=RAssassin.maxhp = 18;
+hp=RAssassin.hp = 18;
+atk=RAssassin.atk = 16;
+def=RAssassin.def = 12;
+spd=RAssassin.spd = 25;
+yp = RAssassin.yp = 'H';
+xp = RAssassin.xp = 8;
+hasmoved=RAssassin.hasmoved = false;
+canTarget=RAssassin.canTarget = false;
+exists=RAssassin.exists = true;
+RAssassin.getShape = function() {
+	return this.shape;
+};
+var RAssassinhealth = String( RAssassin.hp ) + "/" + String( RAssassin.maxhp );
+
+const BCaster = new Object();
+maxhp=BCaster.maxhp = 17;
+hp=BCaster.hp = 17;
+atk=BCaster.atk = 21;
+def=BCaster.def = 9;
+spd=BCaster.spd = 11;
+yp = BCaster.yp = 'A';
+xp = BCaster.xp = 7;
+hasmoved=BCaster.hasmoved = false;
+canTarget=BCaster.canTarget = false;
+exists=BCaster.exists = true;
+BCaster.getShape = function() {
+	return this.shape;
+};
+var BCasterhealth = String( BCaster.hp ) + "/" + String( BCaster.maxhp );
+
+const RCaster = new Object();
+maxhp=RCaster.maxhp = 17;
+hp=RCaster.hp = 17;
+atk=RCaster.atk = 21;
+def=RCaster.def = 9;
+spd=RCaster.spd = 11;
+yp = RCaster.yp = 'H';
+xp = RCaster.xp = 2;
+hasmoved=RCaster.hasmoved = false;
+canTarget=RCaster.canTarget = false;
+exists=RCaster.exists = true;
+RCaster.getShape = function() {
+	return this.shape;
+};
+var RCasterhealth = String( RCaster.hp ) + "/" + String( RCaster.maxhp );
+
+
+const BRider = new Object();
+maxhp=BRider.maxhp = 30;
+hp=BRider.hp = 30;
+atk=BRider.atk = 17;
+def=BRider.def = 15;
+spd=BRider.spd = 9;
+yp = BRider.yp = 'A';
+xp = BRider.xp = 3;
+hasmoved=BRider.hasmoved = false;
+canTarget=BRider.canTarget = false;
+exists=BRider.exists = true;
+BRider.getShape = function() {
+	return this.shape;
+};
+var BRiderhealth = String( BRider.hp ) + "/" + String( BRider.maxhp );
+
+const RRider = new Object();
+maxhp = RRider.maxhp = 30;
+hp = RRider.hp = 30;
+atk = RRider.atk = 17;
+def = RRider.def = 15;
+spd = RRider.spd = 9;
+yp = RRider.yp = 'H';
+xp = RRider.xp = 6;
+hasmoved=RRider.hasmoved = false;
+canTarget=RRider.canTarget = false;
+exists=RRider.exists = true;
+RRider.getShape = function() {
+	return this.shape;
+};
+var RRiderhealth = String( RRider.hp ) + "/" + String( RRider.maxhp );
+
+
+//healthbars
+function createClasses() {
+//black
+if(BAssassin.exists === true) {document.getElementById("hpbar").innerHTML=BAssassinhealth; }
+if(BLancer.exists === true) {document.getElementById("hpbar2").innerHTML=BLancerhealth; } 
+if(BArcher.exists === true) {document.getElementById("hpbar6").innerHTML=BArcherhealth; }
+if(BRuler.exists === true) {document.getElementById("hpbar5").innerHTML=BRulerhealth; }
+if(BSaber.exists === true) {document.getElementById("hpbar4").innerHTML=BSaberhealth; }
+if(BCaster.exists === true) {document.getElementById("hpbar7").innerHTML=BCasterhealth; }
+if(BBerserker.exists === true) {document.getElementById("hpbar8").innerHTML=BBerserkerhealth; }
+if(BRider.exists === true) {document.getElementById("hpbar3").innerHTML=BRiderhealth; }
+//red
+if(RAssassin.exists === true) {document.getElementById("hpbar16").innerHTML=RAssassinhealth; }
+if(RLancer.exists === true) {document.getElementById("hpbar15").innerHTML=RLancerhealth; }
+if(RArcher.exists === true) {document.getElementById("hpbar11").innerHTML=RArcherhealth; }
+if(RRuler.exists === true) {document.getElementById("hpbar12").innerHTML=RRulerhealth; }
+if(RSaber.exists === true) {document.getElementById("hpbar13").innerHTML=RSaberhealth; }
+if(RCaster.exists === true) {document.getElementById("hpbar10").innerHTML=RCasterhealth; }
+if(RBerserker.exists === true) {document.getElementById("hpbar9").innerHTML=RBerserkerhealth; }
+if(RRider.exists === true) {document.getElementById("hpbar14").innerHTML=RRiderhealth; }
+
+}
+
+//updating face box
+$(document).ready(function() {
+	var trigger = $('.objects'),
+	container = $('#right'),
+	container2 = $('.rightfighter'), 
+	container3 = $('#left'), 
+	container4 = $('.leftfighter'), 
+	container5 = $('#rightf'),
+	container6 = $('.rightface'),
+	container7 = $('#leftf'),
+	container8 = $('.leftface'),
+	containerLName = $('#leftNamebox'),
+	containerRName = $('#rightNamebox'),
+	containerLStats = $('#leftstats'),
+	containerRStats = $('#rightstats'),
+	containerLPredict= $('#leftPredict'),
+	containerRPredict = $('#rightPredict');
+
+
+	
+	trigger.on('drag', function() {
+		var $this = $(this)
+			target = $this.attr('target');
+			removeTargets();
+			setTargetFalse();
+			document.getElementById('leftPredict').innerHTML = "";
+			document.getElementById('rightPredict').innerHTML = "";
+			enemy = "";
+			
+			
+if(target === "BAssassin" && BAssassin.exists === true || target ==="BLancer" && BLancer.exists === true || target ==="BRider" && BRider.exists === true || target === "BSaber" && BSaber.exists === true || target ==="BRuler" && BRuler.exists === true || target ==="BCaster" && BCaster.exists === true || target ==="BArcher" && BArcher.exists === true || target ==="BBerserker" && BBerserker.exists === true) {			
+			container6.removeClass("rightface");
+			setTimeout(function() {
+				container6.addClass("rightface");
+			}, 1);
+
+
+			targetsrc = "images/" + target + "f.png";
+			$('#rightf').remove('src');
+			$('#rightf').attr('src', targetsrc).attr('height', '100%').attr('width', '100%').attr('draggable', 'false');
+			container5.load('#rightf');
+			
+			container2.removeClass("rightfighter"); 
+			setTimeout(function() {
+				container2.addClass("rightfighter");
+			}, 1);
+
+
+			 targetsrc = "images/" + target + ".png"; 
+			 $('#right').remove('src'); 
+			 if(targetsrc === "images/BRuler.png") { 
+				 $('#right').attr('src', targetsrc).attr('height', '40%').attr('width', '40%'); 
+				 container.load('#right'); 
+				 }  
+			 if(targetsrc === "images/BCaster.png") { 
+				 $('#right').attr('src', targetsrc).attr('height', '45%').attr('width', '45%'); 
+				 container.load('#right'); 
+				 }  
+				 else { 
+			 $('#right').attr('src', targetsrc).attr('height', '40%').attr('width', '40%'); 
+			 container.load('#right'); 
+			 }
+
+			
+			
+			document.getElementById('rightNamebox').innerHTML = target;
+			if(BAssassin.exists === true && target === "BAssassin") {document.getElementById('rightstats').innerHTML = "ATK: " + BAssassin.atk + " DEF: " + BAssassin.def + " SPD: " + BAssassin.spd; }
+			if(BBerserker.exists === true && target === "BBerserker") {document.getElementById('rightstats').innerHTML = "ATK: " + BBerserker.atk + " DEF: " + BBerserker.def + " SPD: " + BBerserker.spd; }
+			if(BSaber.exists === true && target === "BSaber") {document.getElementById('rightstats').innerHTML = "ATK: " + BSaber.atk + " DEF: " + BSaber.def + " SPD: " + BSaber.spd; }
+			if(BRuler.exists === true && target === "BRuler") {document.getElementById('rightstats').innerHTML = "ATK: " + BRuler.atk + " DEF: " + BRuler.def + " SPD: " + BRuler.spd; }
+			if(BRider.exists === true && target === "BRider") {document.getElementById('rightstats').innerHTML = "ATK: " + BRider.atk + " DEF: " + BRider.def + " SPD: " + BRider.spd; }
+			if(BArcher.exists === true && target === "BArcher") {document.getElementById('rightstats').innerHTML = "ATK: " + BArcher.atk + " DEF: " + BArcher.def + " SPD: " + BArcher.spd; }
+			if(BCaster.exists === true && target === "BCaster") {document.getElementById('rightstats').innerHTML = "ATK: " + BCaster.atk + " DEF: " + BCaster.def + " SPD: " + BCaster.spd; }
+			if(BLancer.exists === true && target === "BLancer") {document.getElementById('rightstats').innerHTML = "ATK: " + BLancer.atk + " DEF: " + BLancer.def + " SPD: " + BLancer.spd; }
+			containerRName.load('#rightNamebox');
+			containerRStats.load('#rightstats');
+			
+}
+if(target === "RAssassin" && RAssassin.exists === true || target ==="RLancer" && RLancer.exists === true  || target ==="RRider" && RRider.exists === true  || target === "RSaber" && RSaber.exists === true  || target ==="RRuler" && RRuler.exists === true  || target ==="RCaster" && RCaster.exists === true || target ==="RArcher"  && RArcher.exists === true || target ==="RBerserker" && RBerserker.exists === true ) {			
+			container8.removeClass("leftface");
+			setTimeout(function() {
+				container8.addClass("leftface");
+			}, 1);
+
+
+			targetsrc = "images/" + target + "f.png";
+			$('#leftf').remove('src');
+			$('#leftf').attr('src', targetsrc).attr('height', '40%').attr('width', '40%').attr('draggable', 'false');
+			container7.load('#leftf');
+			
+			 container4.removeClass("leftfighter"); 
+			 setTimeout(function() { 
+				 container4.addClass("leftfighter"); 
+			 }, 1); 
+
+
+			 targetsrc = "images/" + target + ".png"; 
+			 $('#left').remove('src'); 
+			 if(targetsrc === "images/RAssassin.png") { 
+				 $('#left').attr('src', targetsrc).attr('height', '55%').attr('width', '55%'); 
+				 container3.load('#left'); 
+				 }  
+			 if(targetsrc === "images/RRider.png") { 
+				 $('#left').attr('src', targetsrc).attr('height', '250').attr('width', '17.5%'); 
+				 container3.load('#left'); 
+				 }  
+				 else { 
+			 $('#left').attr('src', targetsrc).attr('height', '24%').attr('width', '24%'); 
+			 container3.load('#left'); 
+			 } 
+			
+			document.getElementById('leftNamebox').innerHTML = target;
+			if(RAssassin.exists === true && target === "RAssassin") {document.getElementById('leftstats').innerHTML = "ATK: " + RAssassin.atk + " DEF: " + RAssassin.def + " SPD: " + RAssassin.spd; }
+			if(RBerserker.exists === true && target === "RBerserker") {document.getElementById('leftstats').innerHTML = "ATK: " + RBerserker.atk + " DEF: " + RBerserker.def + " SPD: " + RBerserker.spd; }
+			if(RSaber.exists === true && target === "RSaber") {document.getElementById('leftstats').innerHTML = "ATK: " + RSaber.atk + " DEF: " + RSaber.def + " SPD: " + RSaber.spd; }
+			if(RRuler.exists === true && target === "RRuler") {document.getElementById('leftstats').innerHTML = "ATK: " + RRuler.atk + " DEF: " + RRuler.def + " SPD: " + RRuler.spd; }
+			if(RRider.exists === true && target === "RRider") {document.getElementById('leftstats').innerHTML = "ATK: " + RRider.atk + " DEF: " + RRider.def + " SPD: " + RRider.spd; }
+			if(RArcher.exists === true && target === "RArcher") {document.getElementById('leftstats').innerHTML = "ATK: " + RArcher.atk + " DEF: " + RArcher.def + " SPD: " + RArcher.spd; }
+			if(RCaster.exists === true && target === "RCaster") {document.getElementById('leftstats').innerHTML = "ATK: " + RCaster.atk + " DEF: " + RCaster.def + " SPD: " + RCaster.spd; }
+			if(RLancer.exists === true && target === "RLancer") {document.getElementById('leftstats').innerHTML = "ATK: " + RLancer.atk + " DEF: " + RLancer.def + " SPD: " + RLancer.spd; }
+			containerLName.load('#leftNamebox');
+			containerLStats.load('#leftstats');
+			
+			
+			
+}
+checkForEnemy();
+
+});
+trigger.on('dblclick', function() {
+		var $this = $(this)
+			target = $this.attr('target');
+if(target === "BAssassin" && BAssassin.exists === true || target ==="BLancer" && BLancer.exists === true  || target ==="BRider" && BRider.exists === true || target === "BSaber" && BSaber.exists === true || target ==="BRuler" || target ==="BCaster" && BCaster.exists === true || target ==="BArcher" && BArcher.exists === true || target ==="BBerserker" && BBerserker.exists === true ) {			
+			container6.removeClass("rightface");
+			setTimeout(function() {
+				container6.addClass("rightface");
+			}, 1);
+
+
+			targetsrc = "images/" + target + "f.png";
+			$('#rightf').remove('src');
+			$('#rightf').attr('src', targetsrc).attr('height', '100%').attr('width', '100%').attr('draggable', 'false');
+			container5.load('#rightf');
+			
+			container2.removeClass("rightfighter"); 
+			setTimeout(function() {
+				container2.addClass("rightfighter");
+			}, 1);
+
+
+			 targetsrc = "images/" + target + ".png"; 
+			 $('#right').remove('src'); 
+			 if(targetsrc === "images/BRuler.png") { 
+				 $('#right').attr('src', targetsrc).attr('height', '40%').attr('width', '40%'); 
+				 container.load('#right'); 
+				 }  
+			 if(targetsrc === "images/BCaster.png") { 
+				 $('#right').attr('src', targetsrc).attr('height', '45%').attr('width', '45%'); 
+				 container.load('#right'); 
+				 }  
+				 else { 
+			 $('#right').attr('src', targetsrc).attr('height', '40%').attr('width', '40%'); 
+			 container.load('#right'); 
+			 }
+			
+			document.getElementById('rightNamebox').innerHTML = target;
+			if(BAssassin.exists === true && target === "BAssassin") {document.getElementById('rightstats').innerHTML = "ATK: " + BAssassin.atk + " DEF: " + BAssassin.def + " SPD: " + BAssassin.spd;  }
+			if(BBerserker.exists === true && target === "BBerserker") {document.getElementById('rightstats').innerHTML = "ATK: " + BBerserker.atk + " DEF: " + BBerserker.def + " SPD: " + BBerserker.spd; }
+			if(BSaber.exists === true && target === "BSaber") {document.getElementById('rightstats').innerHTML = "ATK: " + BSaber.atk + " DEF: " + BSaber.def + " SPD: " + BSaber.spd; }
+			if(BRuler.exists === true && target === "BRuler") {document.getElementById('rightstats').innerHTML = "ATK: " + BRuler.atk + " DEF: " + BRuler.def + " SPD: " + BRuler.spd; }
+			if(BRider.exists === true && target === "BRider") {document.getElementById('rightstats').innerHTML = "ATK: " + BRider.atk + " DEF: " + BRider.def + " SPD: " + BRider.spd;  }
+			if(BArcher.exists === true && target === "BArcher") {document.getElementById('rightstats').innerHTML = "ATK: " + BArcher.atk + " DEF: " + BArcher.def + " SPD: " + BArcher.spd;  }
+			if(BCaster.exists === true && target === "BCaster") {document.getElementById('rightstats').innerHTML = "ATK: " + BCaster.atk + " DEF: " + BCaster.def + " SPD: " + BCaster.spd;  }
+			if(BLancer.exists === true && target === "BLancer") {document.getElementById('rightstats').innerHTML = "ATK: " + BLancer.atk + " DEF: " + BLancer.def + " SPD: " + BLancer.spd; }
+			containerRPredict.load('#rightPredict');
+			containerRStats.load('#rightstats');
+			containerRName.load('#rightNamebox');
+			
+}
+if(target === "RAssassin" && RAssassin.exists === true || target ==="RLancer" && RLancer.exists === true  || target ==="RRider" && RRider.exists === true || target === "RSaber" && RSaber.exists === true  || target ==="RRuler" && RRuler.exists === true  || target ==="RCaster" && RCaster.exists === true || target ==="RArcher" && RArcher.exists === true || target ==="RBerserker" && RBerserker.exists === true ) {			
+			container8.removeClass("leftface");
+			setTimeout(function() {
+				container8.addClass("leftface");
+			}, 1);
+
+
+			targetsrc = "images/" + target + "f.png";
+			$('#leftf').remove('src');
+			$('#leftf').attr('src', targetsrc).attr('height', '40%').attr('width', '40%').attr('draggable', 'false');
+			container7.load('#leftf');
+			
+			container4.removeClass("leftfighter"); 
+			 setTimeout(function() { 
+				 container4.addClass("leftfighter"); 
+			 }, 1); 
+
+
+			 targetsrc = "images/" + target + ".png"; 
+			 $('#left').remove('src'); 
+			 if(targetsrc === "images/RAssassin.png") { 
+				 $('#left').attr('src', targetsrc).attr('height', '55%').attr('width', '55%'); 
+				 container3.load('#left'); 
+				 }  
+			 if(targetsrc === "images/RRider.png") { 
+				 $('#left').attr('src', targetsrc).attr('height', '250').attr('width', '17.5%'); 
+				 container3.load('#left'); 
+				 }  
+				 else { 
+			 $('#left').attr('src', targetsrc).attr('height', '24%').attr('width', '24%'); 
+			 container3.load('#left'); 
+			 } 
+			
+			document.getElementById('leftNamebox').innerHTML = target;
+			if(RAssassin.exists === true && target === "BAssassin") {document.getElementById('leftstats').innerHTML = "ATK: " + RAssassin.atk + " DEF: " + RAssassin.def + " SPD: " + RAssassin.spd;  }
+			if(RBerserker.exists === true && target === "RBerserker") {document.getElementById('leftstats').innerHTML = "ATK: " + RBerserker.atk + " DEF: " + RBerserker.def + " SPD: " + RBerserker.spd; }
+			if(RSaber.exists === true && target === "RSaber") {document.getElementById('leftstats').innerHTML = "ATK: " + RSaber.atk + " DEF: " + RSaber.def + " SPD: " + RSaber.spd;  }
+			if(RRuler.exists === true && target === "RRuler") {document.getElementById('leftstats').innerHTML = "ATK: " + RRuler.atk + " DEF: " + RRuler.def + " SPD: " + RRuler.spd;  }
+			if(RRider.exists === true && target === "RRider") {document.getElementById('leftstats').innerHTML = "ATK: " + RRider.atk + " DEF: " + RRider.def + " SPD: " + RRider.spd;  }
+			if(RArcher.exists === true && target === "RArcher") {document.getElementById('leftstats').innerHTML = "ATK: " + RArcher.atk + " DEF: " + RArcher.def + " SPD: " + RArcher.spd;  }
+			if(RCaster.exists === true && target === "RCaster") {document.getElementById('leftstats').innerHTML = "ATK: " + RCaster.atk + " DEF: " + RCaster.def + " SPD: " + RCaster.spd; } 
+			if(RLancer.exists === true && target === "RLancer") {document.getElementById('leftstats').innerHTML = "ATK: " + RLancer.atk + " DEF: " + RLancer.def + " SPD: " + RLancer.spd;  }
+			containerRPredict.load('#leftPredict');
+			containerLStats.load('#leftstats');
+			containerLName.load('#leftNamebox');
+			
+}
+
+});
+});	
+
+//updating the target
+$(document).ready(function() {
+$('.objects').dblclick(function(){
+	var $this = $(this)
+		tgt = $this.attr('target');
+		var pastidentity = enemy + "targetbox";
+		var identity = tgt + "targetbox";
+		
+		
+		
+		if(tgt != enemy) {
+			if(pastidentity === 'BAssassintargetbox') {
+				document.getElementById('BAssassintargetbox').style.backgroundImage = ";";
+				document.getElementById('BAssassintargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BLancertargetbox') {
+				document.getElementById('BLancertargetbox').style.backgroundImage = ";";
+				document.getElementById('BLancertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BSabertargetbox') {
+				document.getElementById('BSabertargetbox').style.backgroundImage = ";";
+				document.getElementById('BSabertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BRulertargetbox') {
+				document.getElementById('BRulertargetbox').style.backgroundImage = ";";
+				document.getElementById('BRulertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BRidertargetbox') {
+				document.getElementById('BRidertargetbox').style.backgroundImage = ";";
+				document.getElementById('BRidertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BCastertargetbox') {
+				document.getElementById('BCastertargetbox').style.backgroundImage = ";";
+				document.getElementById('BCastertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BArchertargetbox') {
+				document.getElementById('BArchertargetbox').style.backgroundImage = ";";
+				document.getElementById('BArchertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'BBerserkertargetbox') {
+				document.getElementById('BBerserkertargetbox').style.backgroundImage = ";";
+				document.getElementById('BBerserkertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RAssassintargetbox') {
+				document.getElementById('RAssassintargetbox').style.backgroundImage = ";";
+				document.getElementById('RAssassintargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RLancertargetbox') {
+				document.getElementById('RLancertargetbox').style.backgroundImage = ";";
+				document.getElementById('RLancertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RSabertargetbox') {
+				document.getElementById('RSabertargetbox').style.backgroundImage = ";";
+				document.getElementById('RSabertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RRulertargetbox') {
+				document.getElementById('RRulertargetbox').style.backgroundImage = ";";
+				document.getElementById('RRulertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RRidertargetbox') {
+				document.getElementById('RRidertargetbox').style.backgroundImage = ";";
+				document.getElementById('RRidertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RCastertargetbox') {
+				document.getElementById('RCastertargetbox').style.backgroundImage = ";";
+				document.getElementById('RCastertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RArchertargetbox') {
+				document.getElementById('RArchertargetbox').style.backgroundImage = ";";
+				document.getElementById('RArchertargetbox').style.backgroundSize = " 0%,0%";
+			}
+			if(pastidentity === 'RBerserkertargetbox') {
+				document.getElementById('RBerserkertargetbox').style.backgroundImage = ";";
+				document.getElementById('RBerserkertargetbox').style.backgroundSize = " 0%,0%";
+			}
+		}
+		if(turnc === "black") {
+		if(RArcher.canTarget === true && tgt === 'RArcher') {
+		enemy = "RArcher";
+		document.getElementById("RArchertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RArchertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RArcher.hp + "  ->  " + enemyHP;
+		}
+		if(RCaster.canTarget === true && tgt === 'RCaster') {
+		enemy = "RCaster";
+		document.getElementById("RCastertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RCastertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RCaster.hp + "  ->  " + enemyHP; 
+		}
+		if(RBerserker.canTarget === true && tgt === 'RBerserker') {
+		enemy = "RBerserker";
+		document.getElementById("RBerserkertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RBerserkertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RBerserker.hp + "  ->  " + enemyHP;
+		}
+		if(RSaber.canTarget === true && tgt === 'RSaber') {
+		enemy = "RSaber";
+		document.getElementById("RSabertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RSabertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RSaber.hp + "  ->  " + enemyHP;
+		}
+		if(RRuler.canTarget === true && tgt === 'RRuler') {
+		enemy = "RRuler";
+		document.getElementById("RRulertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RRulertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RRuler.hp + "  ->  " + enemyHP;
+		}
+		if(RRider.canTarget === true && tgt === 'RRider') {
+		enemy = "RRider";
+		document.getElementById("RRidertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RRidertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RRider.hp + "  ->  " + enemyHP;
+		}
+		if(RLancer.canTarget === true && tgt === 'RLancer') {
+		enemy = "RLancer";
+		document.getElementById("RLancertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RLancertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RLancer.hp + "  ->  " + enemyHP;
+		}
+		if(RAssassin.canTarget === true && tgt === 'RAssassin') {
+		enemy = "RAssassin";
+		document.getElementById("RAssassintargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("RAssassintargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('leftPredict').innerHTML = "HP: " + RAssassin.hp + "  ->  " + enemyHP;
+		}
+		}
+		if(turnc === "red") {
+		/////////
+		if(BArcher.canTarget === true && tgt === 'BArcher') {
+		enemy = "BArcher";
+		document.getElementById("BArchertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BArchertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BArcher.hp + "  ->  " + enemyHP;
+		}
+		if(BCaster.canTarget === true && tgt === 'BCaster') {
+		enemy = "BCaster";
+		document.getElementById("BCastertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BCastertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BCaster.hp + "  ->  " + enemyHP;
+		}
+		if(BBerserker.canTarget === true && tgt === 'BBerserker') {
+		enemy = "BBerserker";
+		document.getElementById("BBerserkertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BBerserkertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BBerserker.hp + "  ->  " + enemyHP;
+		}
+		if(BSaber.canTarget === true && tgt === 'BSaber') {
+		enemy = "BSaber";
+		document.getElementById("BSabertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BSabertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BSaber.hp + "  ->  " + enemyHP; 
+		}
+		if(BRuler.canTarget === true && tgt === 'BRuler') {
+		enemy = "BRuler";
+		document.getElementById("BRulertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BRulertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BRuler.hp + "  ->  " + enemyHP; 
+		}
+		if(BRider.canTarget === true && tgt === 'BRider') {
+		enemy = "BRider";
+		document.getElementById("BRidertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BRidertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BRider.hp + "  ->  " + enemyHP;
+		}
+		if(BLancer.canTarget === true && tgt === 'BLancer') {
+		enemy = "BLancer";
+		document.getElementById("BLancertargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BLancertargetbox").style.backgroundSize = "105%, 102%"; 
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BLancer.hp + "  ->  " + enemyHP; 
+		
+		}
+		if(BAssassin.canTarget === true && tgt === 'BAssassin') {
+		enemy = "BAssassin";
+		document.getElementById("BAssassintargetbox").style.backgroundImage = "url('images/targetbox.png')";
+		document.getElementById("BAssassintargetbox").style.backgroundSize = "105%, 102%";
+		prediction = true;
+		Battle();
+		document.getElementById('rightPredict').innerHTML = "HP: " + BAssassin.hp + "  ->  " + enemyHP;
+		}
+		}
+		
+});
+});
+
+
+
+</script>
+</head>
+<body onload="createClasses(); TurnHandler('black'); BGMusic();">
+
+<!--- RIGHT SIDE --->
+<div class = "noselect">
+<div id = "winner"><img id = "w" src = "" alt = "" height = "50%" width = "100%">
+<button class = "Turnbutton3" onclick = "window.location.reload()">Play Again</button></br>
+<button class = "Turnbutton2" onclick = "location.href = 'index.html'">Title Screen</button>
+</div>
+<div id = "stathud"><img src = "images/fighterbox.png" height="102.8%" width = "102.8%"></div>
+<div id = "leftfacebox" class ="leftface"><img id = "leftf" src = "" alt = "" height = "40%" width = "40%"/></div>
+<div id = "rightfacebox" class ="rightface"><img id = "rightf" src = "" alt = "" height = "100%" width = "100%"/></div>
+<button class = "VSbutton" onclick = "BattleStep();">VS</button> 
+<button class = "Turnbutton" onclick = "endTurn();">End Turn</button> 
+<div id = "turndisplay"></div>
+<button id = "titledisplay" onclick = "ToggleMenuButton();">Title Screen</button>
+<div id = "display"><button class = "Turnbutton4" onclick = "location.href = 'index.html'">Title Screen</button></div>
+<div id = "Rline">___</div>
+<div id = "Lline">___</div>
+<div id = "leftNamebox"></div>
+<div id = "rightNamebox"></div>
+<div id = "leftstats"></div>
+<div id = "rightstats"></div>
+<div id = "leftPredict"></div>
+<div id = "rightPredict"></div>
+</div>
+
+<div id = "battlebox"><img src = "images/ubw3.png" height="50%" width = "100%">
+<div id = "damagestat"></div>
+<div id = "attack"><img id= "atkanim" src = "" alt = "" height = "150%" width = "150%"></div>
+<div id = "leftunit"><img id = "Lunit" src = "" alt = "" height = "40%" width = "40%"></div>
+<div id = "rightunit"><img id = "Runit" src = "" alt = "" height = "40%" width = "40%"></div>
+</div>
+
+<div id = "turnbox" class = "turnanimation"><img id= "turn" src = "" alt = "" height = "100%" width = "100%"></div>
+<div class = "hud">
+<div class = "hudbg">
+<div class = "UIbox">
+<div id = "leftfighterbox" class="leftfighter"><img id = "left" src = "" alt = "" height="25%" width = "25%"></div>
+</div>
+<div class = "UIbox">
+<div id = "rightfighterbox" class ="rightfighter"><img id ="right" src = "" alt = "" height="40%" width = "40%"></div></div>
+</div>
+</div>
+
+<!--- LEFT SIDE --->
+<div class = "Gamebox">
+<div id = "border"><img src = "projectfiles/boardborder.png" height="102.8%" width = "102.8%"></div>
+</div>
+<!--Row 1 -->
+<div class = "row">
+	<div class = "white" id="A1" name="A" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BAssassin" class="objects" target = "BAssassin" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BAssassintargetbox"><div id = "hpbar" draggable="false"></div><div class = "healthbar"><img class = "health" id="BAssassinh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable="false"></div></div></div></div></div>
+	<div class = "black" id="A2" name="A" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BLancer" class="objects" target = "BLancer" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BLancertargetbox"><div id = "hpbar2" ></div><div class = "healthbar"><img class = "health" id="BLancerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="A3" name="A" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BRider" class="objects" target = "BRider" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BRidertargetbox"><div id = "hpbar3" ></div><div class = "healthbar"><img class = "health" id="BRiderh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="A4" name="A" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BSaber" class="objects" target = "BSaber" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BSabertargetbox"><div id = "hpbar4" ></div><div class = "healthbar"><img class = "health" id="BSaberh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="A5" name="A" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BRuler" class="objects" target = "BRuler" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BRulertargetbox"><div id = "hpbar5" ></div><div class = "healthbar"><img class = "health" id="BRulerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="A6" name="A" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BArcher" class="objects" target = "BArcher" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BArchertargetbox"><div id = "hpbar6" ></div><div class = "healthbar"><img class = "health" id="BArcherh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="A7" name="A" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BCaster" class="objects" target = "BCaster" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BCastertargetbox"><div id = "hpbar7" ></div><div class = "healthbar"><img class = "health" id="BCasterh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="A8" name="A" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="BBerserker" class="objects" target = "BBerserker" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "BBerserkertargetbox"><div id = "hpbar8" ></div><div class = "healthbar"><img class = "health" id="BBerserkerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 2 -->
+<div class = "row">
+	<div class = "black" id="B1" name="B" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="B2" name="B" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="B3" name="B" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="B4" name="B" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="B5" name="B" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="B6" name="B" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="B7" name="B" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="B8" name="B" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 3 -->
+<div class = "row">
+	<div class = "white" id="C1" name="C" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="C2" name="C" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="C3" name="C" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="C4" name="C" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="C5" name="C" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="C6" name="C" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="C7" name="C" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="C8" name="C" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 4 -->
+<div class = "row">
+	<div class = "black" id="D1" name="D" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="D2" name="D" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="D3" name="D" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="D4" name="D" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="D5" name="D" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="D6" name="D" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="D7" name="D" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="D8" name="D" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 5 -->
+<div class = "row">
+	<div class = "white" id="E1" name="E" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="E2" name="E" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="E3" name="E" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="E4" name="E" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="E5" name="E" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="E6" name="E" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="E7" name="E" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="E8" name="E" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 6 -->
+<div class = "row">
+	<div class = "black" id="F1" name="F" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="F2" name="F" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="F3" name="F" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="F4" name="F" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="F5" name="F" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="F6" name="F" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="F7" name="F" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="F8" name="F" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 7 -->
+<div class = "row">
+	<div class = "white" id="G1" name="G" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="G2" name="G" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="G3" name="G" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="G4" name="G" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="G5" name="G" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="G6" name="G" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "white" id="G7" name="G" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+	<div class = "black" id="G8" name="G" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"></div>
+</div>
+<div class = "clear"> </div>
+
+<!--Row 8 -->
+<div class = "row">
+	<div class = "black" id="H1" name="H" target="1" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RBerserker" class="objects" target = "RBerserker" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RBerserkertargetbox"><div id = "hpbar9" ></div><div class = "healthbar"><img class = "health" id="RBerserkerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<!-- <div class = "white" id="H2" name="H" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RCaster" class="objects" target = "RCaster" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div id = "RCastertargetbox"><img id="RCastertbox" src = "images/targetbox.png" height = "65px" width = "70px%" draggable = "false"></div><div id = "hpbar10" ></div><div class = "healthbar"><img class = "health" id="RCasterh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div> -->
+	<!-- <div class = "white" id="H2" name="H" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div name = "tbox" id = "RCastertargetbox"><div id="RCaster" class="objects" target = "RCaster" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div id = "hpbar10" ></div><div class = "healthbar"><img class = "health" id="RCasterh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div> -->
+	<div class = "white" id="H2" name="H" target="2" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RCaster" class="objects" target = "RCaster" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RCastertargetbox"><div id = "hpbar10" ></div><div class = "healthbar"><img class = "health" id="RCasterh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="H3" name="H" target="3" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RArcher" class="objects" target = "RArcher" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RArchertargetbox"><div id = "hpbar11" ></div><div class = "healthbar"><img class = "health" id="RArcherh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="H4" name="H" target="4" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RRuler" class="objects" target = "RRuler" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RRulertargetbox"><div id = "hpbar12" ></div><div class = "healthbar"><img class = "health" id="RRulerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="H5" name="H" target="5" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RSaber" class="objects" target = "RSaber" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RSabertargetbox"><div id = "hpbar13" ></div><div class = "healthbar"><img class = "health" id="RSaberh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="H6" name="H" target="6" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RRider" class="objects" target = "RRider" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RRidertargetbox"><div id = "hpbar14" ></div><div class = "healthbar"><img class = "health" id="RRiderh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "black" id="H7" name="H" target="7" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RLancer" class="objects" target = "RLancer" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RLancertargetbox"><div id = "hpbar15" ></div><div class = "healthbar"><img class = "health" id="RLancerh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+	<div class = "white" id="H8" name="H" target="8" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" draggable="false"><div id="RAssassin" class="objects" target = "RAssassin" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)"><div class = "nopointer"><div id = "RAssassintargetbox"><div id = "hpbar16" ></div><div class = "healthbar"><img class = "health" id="RAssassinh" src = "projectfiles/redrect.png" height = "10px" width = "50px" draggable = "false"></div></div></div></div></div>
+</div>
+<div class = "clear"> </div></div>
+
+ 
+</body>
+</html>
